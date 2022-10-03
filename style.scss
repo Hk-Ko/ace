@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700&display=swap');
+@import "./node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import "./node_modules/animate.css/animate.min.css";
+
+$font-family-sans-serif:'Montserrat', sans-serif;
+
+@import "./node_modules/bootstrap/scss/bootstrap.scss";
+
+
+body{
+    background-color: yellow;
+}
+
+.data-loader{
+    height: 3rem;
+    width: 3rem;
+}
+
+.item-card{
+    height: 350px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.item-img{
+    height: 150px;
+    max-width: 100%;
+}
