@@ -1,11 +1,20 @@
 import './style.scss';
 import { removeLoaderUi, showLoaderUi } from './js/loader';
+import { createItemUi } from './js/item';
+import { addToCart } from './js/cart';
+import * as bootstrap from 'bootstrap';
 
 
 
-let items = [];
-let itemRow = document.querySelector(".item-row")
 
+export let items = [];
+export const itemRow = document.querySelector(".item-row");
+export const cartBtn = document.querySelector(".cart-btn");
+export const cartNumber = document.querySelectorAll(".cart-number");
+export const cartBox = document.querySelector("#cartBox")
+export const total = document.querySelector("#total");
+export const allCartCost = document.querySelectorAll(".cart-cost");
+// export const cartCost =document.querySelector(".cartCost");
 
 showLoaderUi()
 fetch('https://fakestoreapi.com/products')
@@ -15,32 +24,21 @@ fetch('https://fakestoreapi.com/products')
               items = json
 
               items.forEach(item => {
-                console.log(item)
-                let itemDiv = document.createElement("div");
-                itemDiv.classList.add("col-md-6","col-lg-4");
-                itemDiv.innerHTML = `
-                <div class="card item-card">
-                  <div class="card-body d-flex flex-column">
-                    <div class="mb-3">
-                      <img src="${item.image}" class="item-img" alt="">
-                    </div>
-                    <p class="card-title fw-bold text-truncate">${item.title}</p>
-                    <p class="card-text small">
-                      ${item.description.substring(0,100)}                     
-                    </p>
-                    <div class="d-flex justify-content-between align-items-center mt-auto">
-                      <p class="fw-bold mb-0">$ <span>${item.price}</span></p>
-                      <button class="btn btn-outline-primary">
-                      <i class="bi bi-cart-plus"></i>
-                      Add Cart
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                `;
-                itemRow.append(itemDiv)
+                // console.log(item)
+                
+                itemRow.append(createItemUi(item))
               })
 
               // console.log(items)
               removeLoaderUi()
             })
+
+//event-delegation
+
+itemRow.addEventListener("click",e=>{
+  console.log(e.target)
+  if(e.target.classList.contains("add-cart")){
+    addToCart(e)
+    // console.log("add-to-cart") 
+  }
+})
